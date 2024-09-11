@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiggy Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .container {
+            padding: 20px;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+        }
+        .card img {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+        .header, .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ff5722;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="header">
+            <h1>Swiggy Clone</h1>
+            <p>{{ address }}</p>
+        </div>
+        <div class="container">
+            <div class="search-bar">
+                <input v-model="searchQuery" placeholder="Search for '{{ searchPlaceholder }}'">
+            </div>
+            <div class="card-grid">
+                <div class="card" v-for="card in cards" :key="card.title">
+                    <img :src="card.image" alt="icon">
+                    <h3>{{ card.title }}</h3>
+                    <p>{{ card.offer }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Ready.. Set.. Surprise! Tell us your birthday and unlock special treats!</p>
+        </div>
+    </div>
+
+    <!-- Vue.js CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const { createApp } = Vue;
+
+        const app = createApp({
+            data() {
+                return {
+                    address: 'Shah Colony, Chavni, Dabeerpura, Hyderabad, Telangana 500023, India',
+                    searchQuery: '',
+                    searchPlaceholder: 'Pizza',
+                    cards: [
+                        { title: 'FOOD DELIVERY', offer: 'BUY 1 GET 1 FREE & FREE DELIVERY', image: 'https://via.placeholder.com/100' },
+                        { title: 'INSTAMART', offer: 'FREE DELIVERY', image: 'https://via.placeholder.com/100' },
+                        { title: 'DINEOUT', offer: 'FLAT 50% OFF', image: 'https://via.placeholder.com/100' },
+                        { title: 'GENIE', offer: 'SEND GIFTS & MORE', image: 'https://via.placeholder.com/100' },
+                    ]
+                };
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>
